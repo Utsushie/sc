@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sc.core.cloudclient.controller.user.dao.UserDao">
+
+    <select id="getUserInfo" parameterType="com.sc.core.cloudclient.controller.user.dto.UserInfo" resultType="com.sc.core.cloudclient.controller.user.dto.UserInfo">
+        SELECT  user_id AS userId,
+                user_name AS userName
+        FROM    pg_base_user
+        WHERE   status <![CDATA[ <> ]]> '0'
+        <if test="userName !=null and userName != ''">
+            AND user_name = #{userName}
+        </if>
+
+    </select>
+
+    <select id="getUserInfoList" parameterType="com.sc.core.cloudclient.controller.user.dto.UserInfo" resultType="com.sc.core.cloudclient.controller.user.dto.UserInfo">
+        SELECT  user_id AS userId,
+                user_name AS userName
+        FROM    pg_base_user
+        WHERE   status != 0
+        ORDER BY updated_date DESC
+        LIMIT   #{start},#{pageSize}
+    </select>
+
+    <insert id="addUserInfo" parameterType="com.sc.core.cloudclient.controller.user.dto.UserInfo">
+        INSERT INTO pg_base_user(
+                                user_name,
+                                created_by,
+                                updated_by
+                                )
+                            VALUES(
+                                #{userName},
+                                #{createdBy},
+                                #{updatedBy}
+                            )
+    </insert>
+
+</mapper>

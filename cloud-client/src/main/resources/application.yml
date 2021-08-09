@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cloud-client
+  datasource:
+    druid:
+      # 使用阿里 Druid 连接池
+      #type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://8.135.14.136:5432/pg_dc
+      username: yx
+      password: pgyx2016
+      initial-size: 1 #初始化连接大小
+      max-active: 128 #最大连接池数量
+      min-idle: 96 #最小连接池数量
+      filter:
+        stat:
+          log-slow-sql: true
+          db-type: postgresql
+          enabled: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.sc.core.cloudclient.controller.user.dao: debug
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+    instance-id: 127.0.0.1:8080
+
+
