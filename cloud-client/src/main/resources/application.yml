@@ -16,18 +16,16 @@ spring:
       max-active: 128 #最大连接池数量
       min-idle: 96 #最小连接池数量
       filter:
-        stat:
-          log-slow-sql: true
-          db-type: postgresql
+        slf4j:
           enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
 
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-logging:
-  level:
-    com.sc.core.cloudclient.controller.user.dao: debug
+  #mybatis-plus:
+ # configuration:
+  #  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 eureka:
   client:

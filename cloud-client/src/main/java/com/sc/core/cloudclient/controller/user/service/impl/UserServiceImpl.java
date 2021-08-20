@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.util.List;
 
 /**
  * @Author YanXin
@@ -24,6 +25,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo getUserInfo(UserInfo userInfo) {
         return userDao.getUserInfo(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> getUserInfoList(UserInfo userInfo) {
+        List<UserInfo> userList = userDao.getUserInfoList(userInfo);
+        return userList;
     }
 
     @Override

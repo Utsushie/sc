@@ -18,9 +18,9 @@
         SELECT  user_id AS userId,
                 user_name AS userName
         FROM    pg_base_user
-        WHERE   status != 0
+        WHERE   status != '0'
         ORDER BY updated_date DESC
-        LIMIT   #{start},#{pageSize}
+        LIMIT  #{pageSize}  OFFSET #{start}
     </select>
 
     <insert id="addUserInfo" parameterType="com.sc.core.cloudclient.controller.user.dto.UserInfo">

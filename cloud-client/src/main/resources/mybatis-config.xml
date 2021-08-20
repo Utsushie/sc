@@ -3,10 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
     <settings>
-        <!--开启驼峰命名规则-->
-        <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <!--设置主键自增-->
-        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.postgresql.Driver"/>
+                <property name="url" value="jdbc:postgresql://8.135.14.136:5432/pg_dc"/>
+                <property name="username" value="yx"/>
+                <property name="password" value="pgyx2016"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--<settings>
+        &lt;!&ndash;开启驼峰命名规则&ndash;&gt;
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        &lt;!&ndash;设置主键自增&ndash;&gt;
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>-->
+
 </configuration>

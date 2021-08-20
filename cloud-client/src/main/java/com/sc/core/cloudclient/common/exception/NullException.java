@@ -16,7 +16,7 @@ public class NullException {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result userNull(Exception e){
-        if(e instanceof DefaultException){
+        if(e != null){
             DefaultException defaultException = (DefaultException) e;
             return ResultUitl.error(defaultException.getCode(), defaultException.getMessage());
         }else{
